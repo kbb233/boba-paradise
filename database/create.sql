@@ -91,9 +91,9 @@ CREATE TABLE IF NOT EXISTS public.duty
 CREATE TABLE IF NOT EXISTS public.attendance
 (
     employee_id character varying(20) ,
-	date DATE
-    clockin TIMESTAMP,
-	clockOUT TIMESTAMP
+	date DATE,
+    clockIn TIMESTAMP,
+	clockOUT TIMESTAMP,
     PRIMARY KEY (employee_id, date)
 );
 
@@ -200,7 +200,7 @@ ALTER TABLE IF EXISTS public.duty
 
 ALTER TABLE IF EXISTS public.duty
     ADD FOREIGN KEY (shift_id)
-    REFERENCES public.schedule ("shiftID") MATCH SIMPLE
+    REFERENCES public.schedule ("shift_id") MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
