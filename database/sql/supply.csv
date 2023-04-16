@@ -1,0 +1,14 @@
+﻿item,supplier,unit_price
+"""milk""",supplier1@gsu.edu,3
+"""green tea""",supplier1@gsu.edu,5
+"""milk""",supplier3@gsu.edu,7
+"""black tea""",supplier3@gsu.edu,9
+"""milk""",supplier2@gsu.edu,11
+"""green tea""",supplier2@gsu.edu,13
+"""black tea""",supplier2@gsu.edu,15
+"""oolong tea""",supplier3@gsu.edu,17
+"""pudding powder""",supplier1@gsu.edu,19
+"""small bag""",supplier1@gsu.edu,21
+"""medium bag""",supplier3@gsu.edu,23
+"""large bag""",supplier3@gsu.edu,25
+"""jelly powder""",supplier1@gsu.edu,27
