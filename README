@@ -1,0 +1,7 @@
+sequelize-auto -h localhost -d public -u postgres -x 1234 -p 5432  --dialect postgres -o ./app/models -t attendance, customers, customers_order, customers_order, duty, employee, employee, event, inventory, order_detail, product, redeem_reward, redeem_reward, refund_order, reward, schedule, supplier, supply, supply_order
+
+
+
+node_modules\.bin\sequelize-auto -h localhost -d postgres -u postgres -x 1234 -p 5432  --dialect postgres -o ".\app\models\" -t attendance
+
+node_modules\.bin\sequelize-auto -o ".\app\models" -d postgres -h localhost -u postgres -p 5432 -x 1234 -e postgres

@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./sql/create.sql:/docker-entrypoint-initdb.d/create.sql
+     # - ./sql/insert.sql:/docker-entrypoint-initdb.d/insert.sql
+    ports:
+      - "5432:5432"
+    restart: always
