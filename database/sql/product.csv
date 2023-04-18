@@ -1,4 +1,5 @@
-﻿mountain tea,recipe1,5.25,TRUE
+﻿product_id,recipe,price,status
+mountain tea,recipe1,5.25,TRUE
 green tea,recipe2,5.75,TRUE
 black tea,recipe3,6.25,TRUE
 boba paradise milk  tea,recipe4,6.75,TRUE

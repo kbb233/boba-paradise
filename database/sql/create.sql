@@ -1,3 +1,6 @@
+BEGIN;
+
+
 CREATE TABLE IF NOT EXISTS public.customers
 (
     phone_number character varying(20) NOT NULL,
@@ -266,8 +269,4 @@ ALTER TABLE IF EXISTS public.supply_order
     ON DELETE NO ACTION
     NOT VALID;
 
-
-
-
-
-
+END;
