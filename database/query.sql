@@ -1,41 +1,8 @@
---get customer's order
-SELECT product_id, quantity
-FROM customers_order as c1, order_detail as o1
-WHERE c1.phone_number = '2069712334' AND o1.order_id = c1.order_id;
-
-
---refund
-UPDATE public.customers_order
-SET status = FALSE
-WHERE phone_number = phone_number and order_id = order_id;
-
+--customer---------------------------------------------------------------------
 --get menu
 SELECT product_id,price
 FROM product;
 
---get work hour for the past week
-SELECT
-    employee_id,
-    SUM(EXTRACT(EPOCH FROM (clockOUT - clockIn))/3600) AS total_hours
-FROM
-    attendance
-WHERE
-    date > ('2023-04-20'::date - INTERVAL '1 week') AND date <= ('2023-04-20'::date)
-GROUP BY
-    employee_id
-;
-
---or change to CURRENT_DATE
-
-SELECT
-    employee_id,
-    SUM(EXTRACT(EPOCH FROM (clockOUT - clockIn))/3600) AS total_hours
-FROM  attendance
-WHERE	date > (CURRENT_DATE - INTERVAL '1 week')
-GROUP BY  employee_id
-HAVING
-    SUM(EXTRACT(EPOCH FROM (clockOUT - clockIn))/3600) > 40;
-	
 --create ORDER
 SELECT create_customer_order(
     '206945634', 
@@ -43,7 +10,7 @@ SELECT create_customer_order(
     ARRAY['green tea', 'black tea'], 
     ARRAY[2, 1] 
 );	
-/*
+/*This is the function part
 CREATE OR REPLACE FUNCTION create_customer_order(
     p_phone_number character varying,
     p_customer_comments character varying,
@@ -74,7 +41,6 @@ END;
 $$ LANGUAGE plpgsql;
 
 */
-
 
 --get order detail
 SELECT order_id, product_id, quantity 
@@ -111,6 +77,69 @@ JOIN
     product p ON od.product_id = p.product_id
 WHERE co.order_id = 21;
 
+
+--check point
+SELECT points
+FROM customers
+WHERE phone_number = '206945634';
+
+--add point (ex.10 points
+UPDATE customers
+SET points = points + 10
+WHERE phone_number = '206945634';
+
+--redeem reward
+WITH reward_points AS (
+    SELECT points
+    FROM reward
+    WHERE reward_name = 'a boba bag'
+)
+UPDATE customers
+SET points = points - (SELECT points FROM reward_points)
+WHERE phone_number = '206945634'
+  AND points >= (SELECT points FROM reward_points);
+  
+INSERT INTO redeem_reward (customer_id, reward_id, redeem_date)
+VALUES ('206945634', 'a boba bag', CURRENT_DATE);
+
+
+--employee---------------------------------------------------------------------
+
+--get customer's order
+SELECT product_id, quantity
+FROM customers_order as c1, order_detail as o1
+WHERE c1.phone_number = '2069712334' AND o1.order_id = c1.order_id;
+
+
+--refund
+UPDATE public.customers_order
+SET status = FALSE
+WHERE phone_number = phone_number and order_id = order_id;
+
+
+--get work hour for the past week
+SELECT
+    employee_id,
+    SUM(EXTRACT(EPOCH FROM (clockOUT - clockIn))/3600) AS total_hours
+FROM
+    attendance
+WHERE
+    date > ('2023-04-20'::date - INTERVAL '1 week') AND date <= ('2023-04-20'::date)
+GROUP BY
+    employee_id
+;
+
+--or change to CURRENT_DATE
+
+SELECT
+    employee_id,
+    SUM(EXTRACT(EPOCH FROM (clockOUT - clockIn))/3600) AS total_hours
+FROM  attendance
+WHERE	date > (CURRENT_DATE - INTERVAL '1 week')
+GROUP BY  employee_id
+HAVING
+    SUM(EXTRACT(EPOCH FROM (clockOUT - clockIn))/3600) > 40;
+	
 --income
 SELECT
     SUM(order_income) as income
@@ -132,8 +161,7 @@ GROUP BY
         co.order_id
 )subquery;
 
+--new event
+INSERT INTO event (event_name, event_content, start_date, end_date, employee_id)
+VALUES ('happy hour', 'Buy one get one 50%', '2023-4-21', '2023-4-28', 'thisisemail1@gsu.edu');
 
---check point
-SELECT points
-FROM customers
-WHERE phone_number = ?;
