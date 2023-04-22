@@ -20,8 +20,9 @@ const NewCustomer = () => {
 
     const initialValues = {
       customer_name: "",
-      phone_number: ""
-
+      phone_number: "", 
+      password: "", 
+      points: 0,
     };
     const checkoutSchema = yup.object().shape({
         customer_name:yup.string().required("Required"),
@@ -56,6 +57,20 @@ const NewCustomer = () => {
                     helperText={touched.customer_name && errors.customer_name}
                     sx={{ gridColumn: "span 2" }}
                   />
+                   <TextField
+                    fullWidth
+                    variant="filled"
+                    type="text"
+                    label="password"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.password}
+                    name="password"
+                    error={!!touched.password && !!errors.password}
+                    helperText={touched.password && errors.password}
+                    sx={{ gridColumn: "span 2" }}
+                  />
+
                   <TextField
                     fullWidth
                     variant="filled"

@@ -27,6 +27,7 @@ function EditToolbar(props) {
 
     const data = 
     { 
+      productName: '',
       recipe: '', 
       price:0.0, 
       status: true 
@@ -123,6 +124,7 @@ export default function Products () {
 
   const columns = [
     { field: "id", headerName: "Id", width: 100, },
+    { field: "productName", headerName: "Product Name", width: 100, editable: true },
     { field: "recipe", headerName: "recipe", width: 100,  editable: true},
     {
       field: "price",

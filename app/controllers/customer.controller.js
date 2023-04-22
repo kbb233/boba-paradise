@@ -8,7 +8,9 @@ exports.create = (req, res) => {
   // Create a customer
   const customer = {
     customer_name: data.customer_name,
-    phone_number: data.phone_number
+    phone_number: data.phone_number,
+    password: data.password,
+    points: data.points
   };
 
   // Save Customer in the database

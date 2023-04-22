@@ -7,6 +7,7 @@ exports.create = (req, res) => {
     const  data = req.body;
   // Create a order
   const orderDetail = {
+    phone_number: data.phone_number,
     order_id: data.order_id,
     product_id: data.product_id, 
     quantity: data.quantity
