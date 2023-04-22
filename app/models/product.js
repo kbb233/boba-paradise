@@ -1,8 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const Product = sequelize.define("product", {
-      product_id: {
-        type: Sequelize.STRING
-      },
       recipe: {
         type: Sequelize.STRING
       },

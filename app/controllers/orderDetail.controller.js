@@ -18,6 +18,7 @@ exports.create = (req, res) => {
       res.send(data);
     })
     .catch(err => {
+      console.log(err);
       res.status(500).send({
         message:
           err.message || "Some error occurred while creating the OrderDetail."
@@ -41,10 +42,15 @@ OrderDetail.findAll()
 
 // Find a single OrderDetail with an id
 exports.findOne = (req, res) => {
-  const id = req.params.id;
+  const  data = req.body;
+  const order_id = data.order_id;
+  const product_id = data.product_id;
 
-  OrderDetail.findByPk(id)
-    .then(data => {
+  OrderDetail.findAll(id)
+  .where({
+    order_id: order_id,
+    product_id: product_id
+  }).then(data => {
       if (data) {
         res.send(data);
       } else {
@@ -62,10 +68,15 @@ exports.findOne = (req, res) => {
 
 // Update a OrderDetail by the id in the request
 exports.update = (req, res) => {
-  const id = req.params.id;
+  const data = req.body;
+  const order_id = data.order_id;
+  const product_id = data.product_id;
 
   OrderDetail.update(req.body, {
-    where: { id: id }})
+    where: { 
+      order_id: order_id,
+      product_id: product_id
+     }})
     .then(num => {
       if (num == 1) {
         res.send({
@@ -87,10 +98,15 @@ exports.update = (req, res) => {
 
 // Delete a OrderDetail with the specified id in the request
 exports.delete = (req, res) => {
-  const id = req.params.id;
-
-  OrderDetail.destroy({
-    where: { id: id }
+  const  data = req.body;
+  const order_id = data.order_id;
+  const product_id = data.product_id;
+  OrderDetail.destroy(
+    {
+      where: { 
+        order_id: order_id,
+        product_id: product_id
+       }
   })
     .then(num => {
       if (num == 1) {
@@ -99,13 +115,14 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete OrderDetail with id=${id}. Maybe OrderDetail was not found!`
+          message: `Cannot delete OrderDetail with id=${req.body}. Maybe OrderDetail was not found!`
         });
       }
     })
     .catch(err => {
+      console.log(err);
       res.status(500).send({
-        message: "Could not delete OrderDetail with id=" + id
+        message: "Could not delete OrderDetail with id=" + req.body
       });
     });
 };

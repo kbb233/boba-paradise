@@ -5,20 +5,20 @@ class OrderDetailDataService {
     return http.get("/orderDetails");
   }
 
-  get(id) {
-    return http.get(`/orderDetails/${id}`);
+  get(data) {
+    return http.get(`/orderDetails/`, data);
   }
 
   create(data) {
     return http.post("/orderDetails", data);
   }
 
-  update(id, data) {
-    return http.put(`/orderDetails/${id}`, data);
+  update(data) {
+    return http.put(`/orderDetails/`, data);
   }
 
-  delete(id) {
-    return http.delete(`/orderDetails/${id}`);
+  delete(data) {
+    return http.delete(`/orderDetails/deleteOne`, data);
   }
 
   deleteAll() {

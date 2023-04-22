@@ -7,9 +7,9 @@ exports.create = (req, res) => {
     const  data = req.body;
   // Create a order
   const order = {
-    recipe: data.recipe,
-    price: data.price, 
-    status: data.status ? data.status : false
+    order_date :  new Date().toString(),
+    customer_comments: data.customer_comments, 
+    phone_number:data.phone_number
   };
 
   // Save Order in the database

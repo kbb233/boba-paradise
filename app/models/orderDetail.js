@@ -10,9 +10,8 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
       },
       quantity: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
-      
     });
     return OrderDetail;
   };

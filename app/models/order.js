@@ -7,15 +7,12 @@ module.exports = (sequelize, Sequelize) => {
       customer_comments: {
         type: Sequelize.STRING
       },
-
       status: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
       },
-
       phone_number: {
         type: Sequelize.STRING,
-        foreignKey: true,
       },
       
     });
