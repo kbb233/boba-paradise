@@ -64,15 +64,21 @@ exports.findOne = (req, res) => {
 // Update a Customer by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
+  console.log(req);
   //update exsting one
-  Customer.upsert(req.body, {
-    where: { phone_number: id }
-  })
+  Customer.update(req.body,
+    {where: { phone_number: id }})
+    .then(() => {
+      if(req.body.points){
+        Customer.increment('points', { by: req.body.points, where:{ phone_number: id}})
+      }
+    })
     .then(data => {
       console.log(data);
       res.send(data);
     })
     .catch(err => {
+      console.log(err);
       res.status(500).send({
         message: "Error updating Customer with id=" + id
       });

@@ -38,12 +38,16 @@ const NewOrder = () => {
         orderDetailsService.create(orderDetail2);
 
         console.log(values);
+    }).then(res => {
+       var updatingPoint = {
+        points: 1
+      }
+      customerService.update(values.customer.phone_number, updatingPoint);
     });
   }
     
     const [product, setProduct] = useState([]);
     const [customer, setCustomer] = useState([]);
-
 
     React.useEffect(() => {
       ProductDataService.getAll().then(res => {
@@ -76,8 +80,6 @@ const NewOrder = () => {
         quantity2: yup.string().required("Required"),
         customer: yup.string().required("Required")
     })
-
-
 
     const Form1 = () => {
     
