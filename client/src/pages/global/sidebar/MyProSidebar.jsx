@@ -11,8 +11,6 @@ import { useTheme, Box, Typography, IconButton } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import SwitchRightOutlinedIcon from "@mui/icons-material/SwitchRightOutlined";
@@ -147,7 +145,7 @@ const MyProSidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Harun Jeylan
+                  Boba Paradise
                 </Typography>
               </Box>
             </Box>
@@ -175,7 +173,22 @@ const MyProSidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 20px 5px 20px" }}
+            >
+              Order Management
+            </Typography>
 
+            <Item
+              title="Create New Order"
+              to="/newOrder"
+              icon={<ContactsOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
 
             <Item
               title="Order List"
@@ -221,6 +234,13 @@ const MyProSidebar = () => {
             <Item
               title="Cusomters"
               to="/customers"
+              icon={<ContactsOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Create Customer"
+              to="/newCustomer"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

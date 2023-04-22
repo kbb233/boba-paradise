@@ -2,7 +2,7 @@ import React from "react";
 import { Box, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import {GridToolbar } from "@mui/x-data-grid";
-import OrderDetailDataService from "../../service/product.service"
+import OrderDetailDataService from "../../service/orderDetail.service"
 
 import Header from "../../components/Header";
 
@@ -32,11 +32,11 @@ function EditToolbar(props) {
       quantity: 0.0 
     }
     OrderDetailDataService.create(data).then( res => {
-      const product = res.data;
-      setRows((oldRows) => [...oldRows, product]);
+      const orderDetail = res.data;
+      setRows((oldRows) => [...oldRows, orderDetail]);
       setRowModesModel((oldModel) => ({
         ...oldModel,
-        [product.id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
+        [orderDetail.id]: { mode: GridRowModes.Edit, fieldToFocus: 'name' },
       }));
     }).catch (error => {
       console.log(error)
@@ -122,7 +122,6 @@ export default function Products () {
   };
 
   const columns = [
-    { field: "id", headerName: "Id", width: 100, },
     { field: "order_id", headerName: "order_id", width: 100,  editable: true},
     { field: "product_id", headerName: "product_id", width: 100,  editable: true},
     {
@@ -134,55 +133,55 @@ export default function Products () {
       width: 100,
       editable: true
     },
-    {
-      field: 'actions',
-      type: 'actions',
-      headerName: 'Actions',
-      width: 100,
-      cellClassName: 'actions',
-      getActions: ({ id }) => {
-        const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
+    // {
+    //   field: 'actions',
+    //   type: 'actions',
+    //   headerName: 'Actions',
+    //   width: 100,
+    //   cellClassName: 'actions',
+    //   getActions: ({ id }) => {
+    //     const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
 
-        if (isInEditMode) {
-          return [
-            <GridActionsCellItem
-              icon={<SaveIcon />}
-              label="Save"
-              onClick={handleSaveClick(id)}
-            />,
-            <GridActionsCellItem
-              icon={<CancelIcon />}
-              label="Cancel"
-              className="textPrimary"
-              onClick={handleCancelClick(id)}
-              color="inherit"
-            />,
-          ];
-        }
+    //     if (isInEditMode) {
+    //       return [
+    //         <GridActionsCellItem
+    //           icon={<SaveIcon />}
+    //           label="Save"
+    //           onClick={handleSaveClick(id)}
+    //         />,
+    //         <GridActionsCellItem
+    //           icon={<CancelIcon />}
+    //           label="Cancel"
+    //           className="textPrimary"
+    //           onClick={handleCancelClick(id)}
+    //           color="inherit"
+    //         />,
+    //       ];
+    //     }
 
-        return [
-          <GridActionsCellItem
-            icon={<EditIcon />}
-            label="Edit"
-            className="textPrimary"
-            onClick={handleEditClick(id)}
-            color="inherit"
-          />,
-          <GridActionsCellItem
-            icon={<DeleteIcon />}
-            label="Delete"
-            onClick={handleDeleteClick(id)}
-            color="inherit"
-          />,
-        ];
-      },
-    },
+    //     return [
+    //       <GridActionsCellItem
+    //         icon={<EditIcon />}
+    //         label="Edit"
+    //         className="textPrimary"
+    //         onClick={handleEditClick(id)}
+    //         color="inherit"
+    //       />,
+    //       <GridActionsCellItem
+    //         icon={<DeleteIcon />}
+    //         label="Delete"
+    //         onClick={handleDeleteClick(id)}
+    //         color="inherit"
+    //       />,
+    //     ];
+    //   },
+    // },
   ];
 
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Products" subtitle="welcome to you products" />
+        <Header title="Order Details" subtitle="welcome to you orderDetails" />
       </Box>
       <Box
         m="8px 0 0 0"
@@ -219,6 +218,7 @@ export default function Products () {
       >
         <DataGridPro
          rows={rows}
+         getRowId={(row) => row.order_id+row.product_id}
          columns={columns}
          editMode="row"
          rowModesModel={rowModesModel}
@@ -226,13 +226,6 @@ export default function Products () {
          onRowEditStart={handleRowEditStart}
          onRowEditStop={handleRowEditStop}
          processRowUpdate={processRowUpdate}
-         slots={{
-           toolbar: EditToolbar,
-         }}
-         slotProps={{
-           toolbar: { setRows, setRowModesModel },
-         }}
-          components={{ Toolbar: GridToolbar }}
         />
       </Box>
     </Box>

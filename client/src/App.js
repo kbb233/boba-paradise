@@ -12,7 +12,8 @@ import Products from "./pages/products";
 import Orders from "./pages/orders";
 import Customers from "./pages/customers";
 import OrderDetails from "./pages/order_details";
-import Form from "./pages/form";
+import NewOrder from "./pages/newOrder";
+import NewCustomer from "./pages/newCustomer";
 
 const App = () => {
   const [theme, colorMode] = useMode();
@@ -32,7 +33,8 @@ const App = () => {
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/OrderDetails" element={<OrderDetails />} />
                 <Route path="/invoices" element={<Invoices />} />
-                <Route path="/form" element={<Form />} />
+                <Route path="/newOrder" element={<NewOrder />} />
+                <Route path="/newCustomer" element={<NewCustomer />} />
               </Routes>
             </main>
           </div>

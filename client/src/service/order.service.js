@@ -2,27 +2,27 @@ import http from "./http-common";
 
 class OrderDataService {
   getAll() {
-    return http.get("/orderDetails");
+    return http.get("/orders");
   }
 
   get(id) {
-    return http.get(`/orderDetails/${id}`);
+    return http.get(`/orders/${id}`);
   }
 
   create(data) {
-    return http.post("/orderDetails", data);
+    return http.post("/orders", data);
   }
 
   update(id, data) {
-    return http.put(`/orderDetails/${id}`, data);
+    return http.put(`/orders/${id}`, data);
   }
 
   delete(id) {
-    return http.delete(`/orderDetails/${id}`);
+    return http.delete(`/orders/${id}`);
   }
 
   deleteAll() {
-    return http.delete(`/orderDetails`);
+    return http.delete(`/orders`);
   }
 }
 

@@ -204,8 +204,8 @@ export default function Customers () {
         }}
       >
         <DataGridPro
-         getRowId={(row) => row.phone_number}
          rows={rows}
+         getRowId={(row) => row.phone_number}
          columns={columns}
          editMode="row"
          rowModesModel={rowModesModel}
@@ -213,13 +213,7 @@ export default function Customers () {
          onRowEditStart={handleRowEditStart}
          onRowEditStop={handleRowEditStop}
          processRowUpdate={processRowUpdate}
-         slots={{
-           toolbar: EditToolbar,
-         }}
-         slotProps={{
-           toolbar: { setRows, setRowModesModel },
-         }}
-          components={{ Toolbar: GridToolbar }}
+  
         />
       </Box>
     </Box>

@@ -19,14 +19,13 @@ db.orderDetail = require("./orderDetail.js")(sequelize, Sequelize);
 
 
 db.customer.hasMany(db.order)
-db.order.belongsTo(db.customer, {
-  foreignKey: 'phone_number'
-}); 
+db.order.belongsTo(db.customer); 
 
 db.order.hasMany(db.orderDetail);
-db.orderDetail.belongsTo(db.order, {
-  foreignKey: 'id',
-  target: 'order_id'
-});
+db.orderDetail.belongsTo(db.order);
+
+// db.orderDetail.hasOne(db.product);
+// db.product.belongsToMany(db.orderDetail, {through: 'orderDetail', targetKey: 'product_id'});
+
 
 module.exports = db;
