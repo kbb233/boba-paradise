@@ -122,8 +122,9 @@ export default function Products () {
   };
 
   const columns = [
-    { field: "order_id", headerName: "order_id", width: 100,  editable: true},
-    { field: "product_id", headerName: "product_id", width: 100,  editable: true},
+    { field: "phone_number", headerName: "Customer Phone Humber", width: 100,  editable: true},
+    { field: "order_id", headerName: "Order Id", width: 100,  editable: true},
+    { field: "product_id", headerName: "Product ID", width: 100,  editable: true},
     {
       field: "quantity",
       headerName: "quantity",

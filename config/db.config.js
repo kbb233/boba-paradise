@@ -3,5 +3,11 @@ module.exports = {
     USER: "postgres",
     PASSWORD: "1234",
     DB: "postgres",
-    dialect: "postgres"
+    dialect: "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   };

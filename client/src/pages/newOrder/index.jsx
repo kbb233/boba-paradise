@@ -24,10 +24,12 @@ const NewOrder = () => {
         const orderDetail1 = {
           order_id: res.data.id,
           product_id: values.product1.id, 
+          phone_number: values.customer.phone_number,
           quantity: values.quantity1
         };
         const orderDetail2 = {
           order_id: res.data.id,
+          phone_number: values.customer.phone_number,
           product_id: values.product2.id, 
           quantity: values.quantity2
         };
@@ -96,7 +98,7 @@ const NewOrder = () => {
             <Autocomplete
              disablePortal
              options={product}
-             getOptionLabel={product => product.id.toString()}
+             getOptionLabel={product => product.productName}
              isOptionEqualToValue={(option, value) => option.id === value.id}
              sx={{ width: 300 }}
              onChange={(e, value) => setFieldValue("product1", value)}
@@ -126,7 +128,7 @@ const NewOrder = () => {
             <Autocomplete
              disablePortal
              options={product}
-             getOptionLabel={product => product.id.toString()}
+             getOptionLabel={product => product.productName}
              isOptionEqualToValue={(option, value) => option.id === value.id}
              sx={{ width: 300 }}
              onChange={(e, value) => setFieldValue("product2", value)}

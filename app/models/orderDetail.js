@@ -9,6 +9,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         primaryKey: true,
       },
+
+      phone_number: {
+        type: Sequelize.STRING,
+      },
       quantity: {
         type: Sequelize.INTEGER
       },

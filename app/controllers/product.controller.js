@@ -7,6 +7,7 @@ exports.create = (req, res) => {
     const  data = req.body;
   // Create a product
   const product = {
+    productName: data.productName,
     recipe: data.recipe,
     price: data.price, 
     status: data.status ? data.status : false
