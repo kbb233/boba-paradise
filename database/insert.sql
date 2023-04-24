@@ -61,6 +61,26 @@ INSERT INTO public.duty (employee_id, shift_id)
 SELECT 'thisisemail1@gsu.edu', shift_id
 FROM new_schedule
 ;
+
+WITH new_schedule AS (
+  INSERT INTO public.schedule(date, type)
+  VALUES ('2023-04-14', TRUE)
+  RETURNING shift_id
+)
+INSERT INTO public.duty (employee_id, shift_id)
+SELECT 'thisisemail1@gsu.edu', shift_id
+FROM new_schedule
+;
+WITH new_schedule AS (
+  INSERT INTO public.schedule(date, type)
+  VALUES ('2023-04-15', TRUE)
+  RETURNING shift_id
+)
+INSERT INTO public.duty (employee_id, shift_id)
+SELECT 'thisisemail1@gsu.edu', shift_id
+FROM new_schedule
+;
+
 WITH new_schedule AS (
   INSERT INTO public.schedule(date, type)
   VALUES ('2023-04-13', FALSE)

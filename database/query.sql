@@ -3,6 +3,16 @@
 SELECT product_id,price
 FROM product;
 
+--Search specific products by entering keywords: 
+SELECT product_id, price
+FROM product
+WHERE product_id ILIKE '%green%';
+--Sort the menu by price: 
+SELECT product_id,price
+FROM product
+ORDER BY price ASC;
+
+
 --create ORDER
 SELECT create_customer_order(
     '206945634', 
@@ -113,8 +123,11 @@ WHERE c1.phone_number = '2069712334' AND o1.order_id = c1.order_id;
 
 --refund
 UPDATE public.customers_order
-SET status = FALSE
-WHERE phone_number = phone_number and order_id = order_id;
+SET order_status = FALSE
+WHERE order_id = 22;
+
+INSERT INTO refund_order (employee_id, order_id, date, time)
+VALUES ('thisisemail1@gsu.edu', 22, CURRENT_DATE, CURRENT_TIME);
 
 
 --get work hour for the past week
@@ -156,12 +169,28 @@ JOIN
     product p ON od.product_id = p.product_id
 WHERE 	
 	co.order_date >= CURRENT_DATE - INTERVAL '1 week'
-    AND co.order_date <= CURRENT_DATE
+    
 GROUP BY
         co.order_id
 )subquery;
+
+--best seller
+SELECT p.product_id, SUM(od.quantity) AS total_quantity_sold
+FROM customers_order co
+JOIN order_detail od ON co.order_id = od.order_id
+JOIN product p ON od.product_id = p.product_id
+WHERE co.order_date >= (CURRENT_DATE - INTERVAL '7 days')
+GROUP BY p.product_id
+ORDER BY total_quantity_sold DESC;
 
 --new event
 INSERT INTO event (event_name, event_content, start_date, end_date, employee_id)
 VALUES ('happy hour', 'Buy one get one 50%', '2023-4-21', '2023-4-28', 'thisisemail1@gsu.edu');
 
+--Weekly Salary: 
+SELECT e.employee_email, 
+(EXTRACT(EPOCH FROM (SUM(a.clockOut - a.clockIn))) / 3600) * e.wage AS weekly_salary
+FROM employee e
+JOIN attendance a ON e.employee_email = a.employee_id
+WHERE a.date >= (CURRENT_DATE - INTERVAL '7 days')
+GROUP BY e.employee_email, e.wage;
