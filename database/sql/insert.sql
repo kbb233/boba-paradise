@@ -90,13 +90,13 @@ FROM new_schedule
 ;
 
 --attendance sign in
-INSERT INTO public.attendance(employee_id,date,clockin) 
-VALUES('thisisemail3@gsu.edu',CURRENT_DATE,CURRENT_TIMESTAMP);
+--INSERT INTO public.attendance(employee_id,date,clockin) 
+--VALUES('thisisemail3@gsu.edu',CURRENT_DATE,CURRENT_TIMESTAMP);
 
 --attendance sign out
-UPDATE public.attendance
-SET clockout = CURRENT_TIMESTAMP
-WHERE employee_id = 'thisisemail3@gsu.edu' and date=CURRENT_DATE;
+--UPDATE public.attendance
+--SET clockout = CURRENT_TIMESTAMP
+--WHERE employee_id = 'thisisemail3@gsu.edu' and date=CURRENT_DATE;
 
 
 --supplier
